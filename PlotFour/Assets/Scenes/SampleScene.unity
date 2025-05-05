@@ -182,7 +182,7 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 0.5, y: 0.5, z: 3}
+  m_Size: {x: 0.5, y: 0.5, z: 10}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!23 &328221732
 MeshRenderer:
@@ -717,7 +717,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c0bf7a0d6455b408f6b134058826c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialPosition: {x: -1.67, y: 0.086, z: 0.60000014}
+  InitialPosition: {x: -0.760001, y: 0.113400005, z: 0.60000014}
   isSelected: 0
   PlayerNumber: 1
   GameManager: {fileID: 563240802}
@@ -725,7 +725,7 @@ MonoBehaviour:
   PlacedInCell: {fileID: 0}
   Row: -1
   Column: -1
-  Speed: 10
+  Speed: 6
 --- !u!4 &1573382093 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7798696490737561623, guid: 2c1a76173c7e0144fbab968bd1968de1, type: 3}
@@ -956,7 +956,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5790362245941073629, guid: 753505d367f39d04c8ef944e9491a149, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.18
+      value: 2.08
       objectReference: {fileID: 0}
     - target: {fileID: 5790362245941073629, guid: 753505d367f39d04c8ef944e9491a149, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1091,7 +1091,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10c0bf7a0d6455b408f6b134058826c4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InitialPosition: {x: 3.18, y: 0.086, z: 0.6}
+  InitialPosition: {x: 2.62, y: 0.113400005, z: 0.6}
   isSelected: 0
   PlayerNumber: 2
   GameManager: {fileID: 563240802}
@@ -1099,7 +1099,7 @@ MonoBehaviour:
   PlacedInCell: {fileID: 0}
   Row: -1
   Column: -1
-  Speed: 10
+  Speed: 6
 --- !u!1 &1811242503
 GameObject:
   m_ObjectHideFlags: 0
@@ -1283,7 +1283,7 @@ Light:
   m_BounceIntensity: 1
   m_ColorTemperature: 6570
   m_UseColorTemperature: 0
-  m_BoundingSphereOverride: {x: 6.3e-43, y: 6e-44, z: 4.3e-44, w: 1.1053e-41}
+  m_BoundingSphereOverride: {x: 2.2e-44, y: 9.275385e-39, z: 2.049919e-19, w: 9.1858e-41}
   m_UseBoundingSphereOverride: 0
   m_UseViewFrustumForShadowCasterCull: 1
   m_ShadowRadius: 0
@@ -2186,7 +2186,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5790362245941073629, guid: 753505d367f39d04c8ef944e9491a149, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.67
+      value: -0.8
       objectReference: {fileID: 0}
     - target: {fileID: 5790362245941073629, guid: 753505d367f39d04c8ef944e9491a149, type: 3}
       propertyPath: m_LocalPosition.y

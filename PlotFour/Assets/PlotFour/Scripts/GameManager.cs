@@ -45,6 +45,9 @@ public class GameManager : MonoBehaviour
 
     public List<Tuple<int, int>> WinningSequence;
 
+    public delegate void WinGameCallback(List<Tuple<int, int>> WinningSequence);
+    public event WinGameCallback OnWinGame;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -134,6 +137,7 @@ public class GameManager : MonoBehaviour
                     || CheckFourDiagonalSE(row, column) || CheckFourDiagonalNE(row, column)
                     )
                 {
+                    OnWinGame(WinningSequence);
                     State = GameState.End;
                     return;
                 }

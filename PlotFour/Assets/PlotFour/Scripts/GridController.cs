@@ -11,11 +11,12 @@ public struct SquareCellSettings
     public GameObject Prefab;
 }
 
-public struct SquareCell
+public class SquareCell
 {
     public int Row, Column;
     public Vector3 Position;
     public GameObject GameObject;
+    public GameObject AssignedPawn;
 
     public SquareCell(int row, int column, Vector3 position, GameObject gameObject) 
     {
@@ -23,6 +24,7 @@ public struct SquareCell
         Column = column;
         Position = position;
         GameObject = gameObject;
+        AssignedPawn = null;
     }
 }
 
@@ -60,12 +62,12 @@ public class GridController : MonoBehaviour
         }
     }
 
-    public SquareCell? GetCellFromGameObject(GameObject cellObject)
+    public SquareCell GetCellFromGameObject(GameObject cellObject)
     {
         return CellList.Find((SquareCell Cell) => Cell.GameObject == cellObject);
     }
 
-    public SquareCell? GetCellFromCoordinates(int Row, int Column)
+    public SquareCell GetCellFromCoordinates(int Row, int Column)
     {
         return CellList.Find((SquareCell Cell) => Cell.Row == Row && Cell.Column == Column);
     }
