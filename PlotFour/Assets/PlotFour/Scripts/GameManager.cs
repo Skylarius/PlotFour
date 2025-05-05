@@ -43,10 +43,13 @@ public class GameManager : MonoBehaviour
     [TextArea(10,10)]
     public string GridDebug;
 
+    public List<Tuple<int, int>> WinningSequence;
+
     // Start is called before the first frame update
     void Start()
     {
         IsGameRunning = true;
+        WinningSequence = new List<Tuple<int, int>>();
         Grid = new GridCell[Rows, Columns];
         for (int i = 0; i < Rows; i++)
         {
@@ -56,7 +59,7 @@ public class GameManager : MonoBehaviour
             }
         }
         // Test
-        StartCoroutine(TestCoroutineRandom());
+        //StartCoroutine(TestCoroutineRandom());
     }
 
     // Update is called once per frame
@@ -88,15 +91,20 @@ public class GameManager : MonoBehaviour
         PlotDebugGrid();
     }
 
-    public void InsertPawn(int Column)
+    /// <summary>
+    /// Insert pawn in grid
+    /// </summary>
+    /// <param name="Column"> Column to insert pawn in </param>
+    /// <returns>Final position of the pawn (x=row, y=column) </returns>
+    public Vector2 InsertPawn(int Column)
     {
         if (State != GameState.PlayerTurn)
         {
-            return;
+            return new Vector2(-1, -1);
         }
         if (IsColumnFull(Column))
         {
-            return;
+            return new Vector2(-1, -1);
         }
         for (int row = 0; row < Rows; row++)
         {
@@ -104,9 +112,10 @@ public class GameManager : MonoBehaviour
             {
                 Grid[row, Column] = (CurrentPlayer == 1) ? GridCell.Player1 : GridCell.Player2;
                 State = GameState.CheckFour;
-                break;
+                return new Vector2(row, Column);
             }
         }
+        return new Vector2(-1, -1);
     }
 
     void CheckFour()
@@ -141,12 +150,15 @@ public class GameManager : MonoBehaviour
         {
             return false;
         }
+        WinningSequence.Add(new Tuple<int, int>(Row, Column));
         for (int i = 0; i < 3; i++)
         {
             if (Grid[Row + i, Column] != Grid[Row + i + 1, Column])
             {
+                WinningSequence.Clear();
                 return false;
             }
+            WinningSequence.Add(new Tuple<int, int>(Row + i + 1, Column));
         }
         return true;
     }
@@ -157,12 +169,15 @@ public class GameManager : MonoBehaviour
         {
             return false;
         }
+        WinningSequence.Add(new Tuple<int, int>(Row, Column));
         for (int j = 0; j < 3; j++)
         {
             if (Grid[Row, Column + j] != Grid[Row, Column + j + 1])
             {
+                WinningSequence.Clear();
                 return false;
             }
+            WinningSequence.Add(new Tuple<int, int>(Row, Column + j + 1));
         }
         return true;
     }
@@ -173,12 +188,15 @@ public class GameManager : MonoBehaviour
         {
             return false;
         }
+        WinningSequence.Add(new Tuple<int, int>(Row, Column));
         for (int k = 0; k < 3; k++)
         {
             if (Grid[Row + k, Column + k] != Grid[Row + k + 1, Column + k + 1])
             {
+                WinningSequence.Clear();
                 return false;
             }
+            WinningSequence.Add(new Tuple<int, int>(Row + k + 1, Column + k + 1));
         }
         return true;
     }
@@ -189,12 +207,15 @@ public class GameManager : MonoBehaviour
         {
             return false;
         }
+        WinningSequence.Add(new Tuple<int, int>(Row, Column));
         for (int k = 0; k < 3; k++)
         {
             if (Grid[Row - k, Column + k] != Grid[Row - k - 1, Column + k + 1])
             {
+                WinningSequence.Clear();
                 return false;
             }
+            WinningSequence.Add(new Tuple<int, int>(Row - k - 1, Column + k + 1));
         }
         return true;
     }
