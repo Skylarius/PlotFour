@@ -31,17 +31,20 @@ public class GameManager : MonoBehaviour
     public int Rows = 9;
     public int Columns = 7;
 
-    public GridCell[,] Grid;
+    [SerializeField]
+    private GridCell[,] Grid;
 
     public int CurrentPlayer = 1;
 
     public bool IsGameRunning = false;
 
+#if UNITY_EDITOR
     [SerializeField]
     private bool ShouldPlotDebugGrid = false;
 
     [TextArea(10,10)]
     public string GridDebug;
+#endif
 
     public List<Tuple<int, int>> WinningSequence;
 
@@ -90,8 +93,9 @@ public class GameManager : MonoBehaviour
                 IsGameRunning = false;
                 break;
         }
-
+#if UNITY_EDITOR
         PlotDebugGrid();
+#endif
     }
 
     /// <summary>
@@ -150,7 +154,7 @@ public class GameManager : MonoBehaviour
 
     bool CheckFourVertical(int Row, int Column)
     {
-        if (Row + 4 > Rows)
+        if (Row + 3 >= Rows)
         {
             return false;
         }
@@ -169,7 +173,7 @@ public class GameManager : MonoBehaviour
 
     bool CheckFourHorizontal(int Row, int Column)
     {
-        if (Column + 4 > Columns)
+        if (Column + 3 >= Columns)
         {
             return false;
         }
@@ -188,7 +192,7 @@ public class GameManager : MonoBehaviour
 
     bool CheckFourDiagonalSE(int Row, int Column)
     {
-        if (Column + 4 > Columns || Row + 4 > Rows)
+        if (Column + 3 >= Columns || Row + 3 >= Rows)
         {
             return false;
         }
@@ -207,7 +211,7 @@ public class GameManager : MonoBehaviour
 
     bool CheckFourDiagonalNE(int Row, int Column)
     {
-        if (Column + 4 > Columns || Row - 4 < 0)
+        if (Column + 3 >= Columns || Row - 3 <= 0)
         {
             return false;
         }
@@ -234,6 +238,7 @@ public class GameManager : MonoBehaviour
         return Grid[0, Column] != GridCell.Empty;
     }
 
+#if UNITY_EDITOR
     void PlotDebugGrid()
     {
         if (!ShouldPlotDebugGrid)
@@ -304,4 +309,5 @@ public class GameManager : MonoBehaviour
             InsertPawn(UnityEngine.Random.Range(0, Columns));
         }
     }
+#endif
 }
